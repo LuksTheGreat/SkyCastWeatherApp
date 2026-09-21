@@ -1,0 +1,24 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+
+# Secrets: never commit your real Firebase config or API key.
+app/google-services.json
+
+# gradle.properties commonly holds the OpenWeatherMap key locally.
+# Uncomment the line below once you've moved your real key out of it,
+# or keep gradle.properties tracked with a placeholder value only.
+# gradle.properties
+
+# Project exclude paths
+/app/build/
+/app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
+/app/build/intermediates/javac/debugAndroidTest/compileDebugAndroidTestJavaWithJavac/classes/

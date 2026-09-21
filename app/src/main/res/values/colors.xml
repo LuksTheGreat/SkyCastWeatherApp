@@ -1,0 +1,10 @@
+<resources>
+    <color name="sky_blue_dark">#1565C0</color>
+    <color name="sky_blue">#42A5F5</color>
+    <color name="sky_blue_light">#BBDEFB</color>
+    <color name="flame_accent">#FF7043</color>
+    <color name="badge_locked">#CFD8DC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#212121</color>
+    <color name="error_red">#D32F2F</color>
+</resources>

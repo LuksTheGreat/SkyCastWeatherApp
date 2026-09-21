@@ -1,0 +1,110 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.skycast.app'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.skycast.app"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "0.2.0-part2"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // The OpenWeatherMap key is injected from gradle.properties / CI secrets
+        // at build time via BuildConfig, so it never has to be hard-coded or
+        // committed to the repository (Part 1, R1).
+        buildConfigField "String", "OPEN_WEATHER_API_KEY", "\"${project.findProperty('OPEN_WEATHER_API_KEY') ?: ''}\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // Allow cleartext during local dev only if ever needed; API is HTTPS regardless.
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/LICENSE.txt']
+        }
+    }
+}
+
+dependencies {
+    // --- Core / UI ---
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4'
+    implementation 'androidx.activity:activity-ktx:1.9.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.fragment:fragment-ktx:1.8.2'
+
+    // --- Coroutines (async API / DB calls without blocking the UI thread) ---
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
+
+    // --- Networking: Retrofit + Gson (Part 1, R1: RESTful API consumption) ---
+    // Docs: https://square.github.io/retrofit/
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+
+    // --- Room local database (Part 1, R6/R8: favourites + offline cache) ---
+    // Docs: https://developer.android.com/training/data-storage/room
+    implementation 'androidx.room:room-runtime:2.6.1'
+    implementation 'androidx.room:room-ktx:2.6.1'
+    kapt 'androidx.room:room-compiler:2.6.1'
+
+    // --- Location (Part 1, R3: GPS-based local weather) ---
+    // Docs: https://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderClient
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+
+    // --- Firebase: external hosted SDK for auth + cloud database ---
+    // Satisfies "connect to an appropriate SDK" and "internet-hosted storage/API".
+    // Docs: https://firebase.google.com/docs/android/setup
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
+    // --- Unit / instrumented testing (Part 2: detailed unit testing) ---
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.4.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1'
+    testImplementation 'androidx.arch.core:core-testing:2.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.room:room-testing:2.6.1'
+}

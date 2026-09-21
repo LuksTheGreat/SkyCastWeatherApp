@@ -1,0 +1,45 @@
+name: Android CI
+
+# Runs the SkyCast unit test suite automatically on every push and pull
+# request against main (Part 2 requirement: R10 — GitHub Actions CI).
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # A placeholder google-services.json is written so the Google Services
+      # Gradle plugin has something to parse on CI. Unit tests never touch
+      # the network / real Firebase project, so a placeholder is sufficient.
+      - name: Add placeholder google-services.json
+        run: cp app/google-services.json.example app/google-services.json
+
+      - name: Run unit tests (./gradlew test)
+        run: ./gradlew test --stacktrace
+        env:
+          ORG_GRADLE_PROJECT_OPEN_WEATHER_API_KEY: ${{ secrets.OPEN_WEATHER_API_KEY }}
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: app/build/reports/tests/

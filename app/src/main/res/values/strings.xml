@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">SkyCast</string>
+
+    <!-- Auth -->
+    <string name="login_title">Welcome back</string>
+    <string name="register_title">Create your account</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="confirm_password_hint">Confirm password</string>
+    <string name="btn_login">Log in</string>
+    <string name="btn_register">Register</string>
+    <string name="no_account_prompt">Don\'t have an account? Register</string>
+    <string name="have_account_prompt">Already have an account? Log in</string>
+
+    <!-- Home -->
+    <string name="humidity_label">Humidity: %1$d%%</string>
+    <string name="wind_label">Wind: %1$.1f km/h</string>
+    <string name="feels_like_label">Feels like: %1$.0f°</string>
+    <string name="view_forecast_btn">View 5-Day Forecast</string>
+    <string name="streak_banner">%1$d-Day Streak — tap to view</string>
+    <string name="last_updated_label">Last updated: %1$s</string>
+    <string name="offline_banner">Offline — showing last saved data</string>
+
+    <!-- Search -->
+    <string name="search_hint">Enter city name…</string>
+
+    <!-- Favourites -->
+    <string name="favourites_title">Favourites</string>
+    <string name="favourites_empty">No favourite cities yet. Add one from Search.</string>
+
+    <!-- Streaks -->
+    <string name="badge_3day">3-Day</string>
+    <string name="badge_7day">7-Day</string>
+    <string name="badge_30day">30-Day</string>
+    <string name="badge_explorer">Explorer</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="units_label">Temperature units</string>
+    <string name="theme_label">Dark theme</string>
+    <string name="logout_btn">Log out</string>
+</resources>

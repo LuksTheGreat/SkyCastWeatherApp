@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.SkyCast" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/sky_blue_dark</item>
+        <item name="colorPrimaryVariant">@color/sky_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/flame_accent</item>
+        <item name="colorSecondaryVariant">@color/flame_accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/sky_blue_dark</item>
+    </style>
+
+    <style name="Theme.SkyCast.Splash" parent="Theme.SkyCast" />
+
+    <style name="BadgeStyle">
+        <item name="android:layout_width">130dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/badge_locked</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

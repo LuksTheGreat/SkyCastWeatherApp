@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Streaks &amp; Badges"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvStreakCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="40sp"
+        android:textColor="@color/flame_accent"
+        tools:text="4-Day Streak"
+        xmlns:tools="http://schemas.android.com/tools" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check in daily to keep it going!"
+        android:textColor="#757575"
+        android:layout_marginBottom="24dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <TextView
+            android:id="@+id/badge3day"
+            style="@style/BadgeStyle"
+            android:text="@string/badge_3day" />
+
+        <TextView
+            android:id="@+id/badge7day"
+            style="@style/BadgeStyle"
+            android:text="@string/badge_7day" />
+
+        <TextView
+            android:id="@+id/badge30day"
+            style="@style/BadgeStyle"
+            android:text="@string/badge_30day" />
+
+        <TextView
+            android:id="@+id/badgeExplorer"
+            style="@style/BadgeStyle"
+            android:text="@string/badge_explorer" />
+
+    </GridLayout>
+
+</LinearLayout>

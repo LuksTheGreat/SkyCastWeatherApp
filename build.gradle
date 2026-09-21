@@ -1,0 +1,22 @@
+// Top-level build file for SkyCast.
+// References:
+// - Android Gradle Plugin docs: https://developer.android.com/build
+// - Google Services / Firebase plugin: https://firebase.google.com/docs/android/setup
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.5.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24'
+        // Google Services plugin — required to read google-services.json and
+        // wire up Firebase Authentication / Firestore (SDK requirement).
+        classpath 'com.google.gms:google-services:4.4.2'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
