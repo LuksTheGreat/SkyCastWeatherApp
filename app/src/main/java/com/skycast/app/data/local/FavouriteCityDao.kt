@@ -39,4 +39,7 @@ interface FavouriteCityDao {
 
     @Query("DELETE FROM favourite_city WHERE id = :id")
     suspend fun deleteById(id: Long)
+
+    @Query("DELETE FROM favourite_city WHERE cityName = :cityName AND country = :country")
+    suspend fun deleteByCityCountry(cityName: String, country: String)
 }

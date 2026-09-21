@@ -26,6 +26,9 @@ class ForecastActivity : AppCompatActivity() {
         binding = ActivityForecastBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Forecast"
+
         weatherRepository = WeatherRepository(applicationContext)
         adapter = ForecastAdapter()
         binding.rvForecast.layoutManager = LinearLayoutManager(this)
@@ -58,5 +61,10 @@ class ForecastActivity : AppCompatActivity() {
                 binding.progressBar.visibility = android.view.View.GONE
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

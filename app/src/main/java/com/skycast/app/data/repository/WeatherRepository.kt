@@ -72,4 +72,9 @@ class WeatherRepository(context: Context) {
         Log.d(Constants.LOG_TAG, "Removing favourite: ${city.cityName}")
         db.favouriteCityDao().delete(city)
     }
+
+    suspend fun removeFavouriteByCityCountry(cityName: String, country: String) {
+        Log.d(Constants.LOG_TAG, "Removing favourite: $cityName")
+        db.favouriteCityDao().deleteByCityCountry(cityName, country)
+    }
 }

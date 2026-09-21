@@ -27,6 +27,9 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Register"
+
         binding.btnRegister.setOnClickListener { attemptRegister() }
         binding.tvGoLogin.setOnClickListener { finish() }
     }
@@ -76,5 +79,10 @@ class RegisterActivity : AppCompatActivity() {
     private fun setLoading(loading: Boolean) {
         binding.progressBar.visibility = if (loading) android.view.View.VISIBLE else android.view.View.GONE
         binding.btnRegister.isEnabled = !loading
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

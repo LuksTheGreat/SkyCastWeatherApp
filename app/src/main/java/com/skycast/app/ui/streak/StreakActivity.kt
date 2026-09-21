@@ -25,6 +25,9 @@ class StreakActivity : AppCompatActivity() {
         binding = ActivityStreakBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Streaks & Badges"
+
         streakRepository = StreakRepository(applicationContext)
 
         lifecycleScope.launch {
@@ -44,5 +47,10 @@ class StreakActivity : AppCompatActivity() {
             ContextCompat.getColor(this, if (isUnlocked) R.color.flame_accent else R.color.badge_locked)
         )
         view.alpha = if (isUnlocked) 1.0f else 0.6f
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

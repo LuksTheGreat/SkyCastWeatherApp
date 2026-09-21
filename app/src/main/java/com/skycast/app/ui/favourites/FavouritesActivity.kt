@@ -31,6 +31,9 @@ class FavouritesActivity : AppCompatActivity() {
         binding = ActivityFavouritesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Favourites"
+
         weatherRepository = WeatherRepository(applicationContext)
         streakRepository = StreakRepository(applicationContext)
 
@@ -86,5 +89,10 @@ class FavouritesActivity : AppCompatActivity() {
             putExtra(Constants.EXTRA_CITY_NAME, "${city.cityName}, ${city.country}")
         }
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

@@ -29,6 +29,9 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Settings"
+
         binding.tvAccountEmail.text = "Signed in as ${FirebaseAuth.getInstance().currentUser?.email ?: "unknown"}"
 
         loadSettings()
@@ -57,5 +60,10 @@ class SettingsActivity : AppCompatActivity() {
             binding.switchUnits.isChecked = settings.units == Constants.UNITS_IMPERIAL
             binding.switchTheme.isChecked = settings.darkTheme
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

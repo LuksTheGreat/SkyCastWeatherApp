@@ -11,6 +11,16 @@
 
     <style name="Theme.SkyCast.Splash" parent="Theme.SkyCast" />
 
+    <style name="Theme.SkyCast.WithActionBar" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/sky_blue_dark</item>
+        <item name="colorPrimaryVariant">@color/sky_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/flame_accent</item>
+        <item name="colorSecondaryVariant">@color/flame_accent</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/sky_blue_dark</item>
+    </style>
+
     <style name="BadgeStyle">
         <item name="android:layout_width">130dp</item>
         <item name="android:layout_height">80dp</item>

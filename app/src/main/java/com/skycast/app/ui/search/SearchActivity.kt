@@ -37,12 +37,15 @@ class SearchActivity : AppCompatActivity() {
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Search"
+
         weatherRepository = WeatherRepository(applicationContext)
         streakRepository = StreakRepository(applicationContext)
 
         adapter = SearchResultsAdapter(
             onCityClicked = { result -> openForecastFor(result) },
-            onStarClicked = { result -> saveFavourite(result) }
+            onStarClicked = { result, isCurrentlyFavourite -> toggleFavourite(result, isCurrentlyFavourite) }
         )
         binding.rvResults.layoutManager = LinearLayoutManager(this)
         binding.rvResults.adapter = adapter
@@ -54,6 +57,8 @@ class SearchActivity : AppCompatActivity() {
             }
             override fun afterTextChanged(s: Editable?) {}
         })
+
+        observeFavourites()
     }
 
     private fun onQueryChanged(query: String) {
@@ -89,18 +94,29 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveFavourite(result: GeoResult) {
+    /** Keeps every star icon in sync with the real Favourites list, live. */
+    private fun observeFavourites() {
         lifecycleScope.launch {
-            val alreadySaved = weatherRepository.isFavourite(result.name, result.country)
-            if (alreadySaved) return@launch
-            weatherRepository.addFavourite(
-                FavouriteCity(
-                    cityName = result.name,
-                    country = result.country,
-                    lat = result.lat,
-                    lon = result.lon
+            weatherRepository.observeFavourites().collect { list ->
+                adapter.setFavouriteKeys(list.map { "${it.cityName}|${it.country}" }.toSet())
+            }
+        }
+    }
+
+    private fun toggleFavourite(result: GeoResult, isCurrentlyFavourite: Boolean) {
+        lifecycleScope.launch {
+            if (isCurrentlyFavourite) {
+                weatherRepository.removeFavouriteByCityCountry(result.name, result.country)
+            } else {
+                weatherRepository.addFavourite(
+                    FavouriteCity(
+                        cityName = result.name,
+                        country = result.country,
+                        lat = result.lat,
+                        lon = result.lon
+                    )
                 )
-            )
+            }
             streakRepository.refreshExplorerBadge() // Explorer badge unlocks at 5 favourites (R7)
         }
     }
@@ -112,5 +128,10 @@ class SearchActivity : AppCompatActivity() {
             putExtra(Constants.EXTRA_CITY_NAME, "${result.name}, ${result.country}")
         }
         startActivity(intent)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

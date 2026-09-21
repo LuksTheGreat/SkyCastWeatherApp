@@ -26,14 +26,32 @@
         </activity>
 
         <activity android:name=".ui.auth.LoginActivity" android:exported="false" />
-        <activity android:name=".ui.auth.RegisterActivity" android:exported="false" />
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SkyCast.WithActionBar" />
 
         <activity android:name=".ui.home.HomeActivity" android:exported="false" />
-        <activity android:name=".ui.search.SearchActivity" android:exported="false" />
-        <activity android:name=".ui.favourites.FavouritesActivity" android:exported="false" />
-        <activity android:name=".ui.forecast.ForecastActivity" android:exported="false" />
-        <activity android:name=".ui.streak.StreakActivity" android:exported="false" />
-        <activity android:name=".ui.settings.SettingsActivity" android:exported="false" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SkyCast.WithActionBar" />
+        <activity
+            android:name=".ui.favourites.FavouritesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SkyCast.WithActionBar" />
+        <activity
+            android:name=".ui.forecast.ForecastActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SkyCast.WithActionBar" />
+        <activity
+            android:name=".ui.streak.StreakActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SkyCast.WithActionBar" />
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SkyCast.WithActionBar" />
 
     </application>
 
