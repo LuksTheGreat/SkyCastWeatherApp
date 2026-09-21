@@ -84,4 +84,4 @@ Built from the Part 1 planning document — original wireframes, navigation flow
 
 ## Video demo
 
-📹 _[link here before submission]_
+<video controls src="20260921150211.mp4" title="Title"></video>
