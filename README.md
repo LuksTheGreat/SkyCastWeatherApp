@@ -7,7 +7,7 @@
 
 ---
 
-## What it does
+ What it does
 
 - Check current weather for a GPS location or any searched city
 - Save favourite cities and see them all at a glance
@@ -16,29 +16,29 @@
 - Change units (°C/°F) and dark theme, synced to your account
 - Register/log in with an email + password (via Firebase Auth)
 
-## Screenshots
+ Screenshots
 
 | | | |
 |---|---|---|
 | ![Login](docs/images/screenshot_login.png) | ![Search](docs/images/screenshot_search.png) | ![Favourites](docs/images/screenshot_favourites.png) |
 | ![Forecast](docs/images/screenshot_forecast.png) | ![Streaks](docs/images/screenshot_streaks.png) | ![Settings](docs/images/screenshot_settings.png) |
 
-## Backend
+ Backend
 
 Registered accounts and per-user settings live in Firebase, viewable in the console:
 
 ![Firestore data](docs/images/screenshot_firestore.png)
 
-- **Firebase Authentication** — email/password login. Passwords are salted & hashed by Firebase server-side; SkyCast's own code never sees or stores them.
-- **Cloud Firestore** — stores each user's `units` and `darkTheme` preference, keyed by their account.
-- **OpenWeatherMap REST API** — current weather, 5-day/3-hour forecast, and city geocoding.
-- **Room (local SQLite)** — favourite cities and streak/badge progress, so they still work offline.
+- Firebase Authentication — email/password login. Passwords are salted & hashed by Firebase server-side; SkyCast's own code never sees or stores them.
+- Cloud Firestore — stores each user's `units` and `darkTheme` preference, keyed by their account.
+- OpenWeatherMap REST API — current weather, 5-day/3-hour forecast, and city geocoding.
+- Room (local SQLite) — favourite cities and streak/badge progress, so they still work offline.
 
-## Tech stack
+ Tech stack
 
 Kotlin · Retrofit + Gson · Room · Firebase Auth & Firestore · Coroutines · Google Play Services Location · JUnit/Mockito
 
-## Project structure
+ Project structure
 
 ```
 app/src/main/java/com/skycast/app/
@@ -49,7 +49,7 @@ app/src/main/java/com/skycast/app/
 └── util/          pure, unit-tested logic (forecast day-aggregation, streak rules)
 ```
 
-## Running it locally
+ Running it locally
 
 1. Get a free API key from [openweathermap.org/api](https://openweathermap.org/api) and put it in `gradle.properties`:
    ```
@@ -58,18 +58,18 @@ app/src/main/java/com/skycast/app/
 2. Create a [Firebase project](https://console.firebase.google.com), register an Android app with package name `com.skycast.app`, enable **Authentication → Email/Password** and **Firestore Database**, then download `google-services.json` into the `app/` folder.
 3. Open in Android Studio, sync, run.
 
-## Testing
+ Testing
 
 ```
 ./gradlew test                  # ForecastAggregatorTest, StreakManagerTest
 ./gradlew connectedAndroidTest  # FavouriteCityDaoTest (needs a device/emulator)
 ```
 
-## CI
+ CI
 
 `.github/workflows/android-ci.yml` runs the unit test suite automatically on every push/PR to `main`.
 
-## Design notes
+ Design notes
 
 Built from the Part 1 planning document — original wireframes, navigation flow, and system architecture below.
 
@@ -82,6 +82,6 @@ Built from the Part 1 planning document — original wireframes, navigation flow
 
 </details>
 
-## Video demo
+ Video demo
 
 <video controls src="20260921150211.mp4" title="Title"></video>
